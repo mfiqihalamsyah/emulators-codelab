@@ -28,6 +28,7 @@ export async function onDocumentReady(firebaseApp) {
   const auth = firebaseApp.auth();
   const db = firebaseApp.firestore();
 
+  // ADD THESE LINES
   if (location.hostname === "127.0.0.1") {
     console.log("127.0.0.1 detected!");
     auth.useEmulator("http://127.0.0.1:9099");
@@ -176,6 +177,7 @@ class HomePage {
   }
 
   addToCart(id, itemData) {
+    // ADD THESE LINES
     if (this.auth.currentUser === null) {
       this.showError("You must be signed in!");
       return;

@@ -17,7 +17,7 @@ const path = require("path");
 const TEST_FIREBASE_PROJECT_ID = "test-firestore-rules-project";
 
 // TODO: Change this to your real Firebase Project ID
-const REAL_FIREBASE_PROJECT_ID = "changeme";
+const REAL_FIREBASE_PROJECT_ID = "my-app-8e31f";
 
 const firebase = require("@firebase/rules-unit-testing");
 
@@ -60,7 +60,6 @@ before(async () => {
 after(() => {
   firebase.apps().forEach(app => app.delete());
 });
-
 
 // Unit test the security rules
 describe("shopping carts", () => {
@@ -179,7 +178,7 @@ describe("shopping cart items", async () => {
   });
 });
 
-describe.skip("adding an item to the cart recalculates the cart total. ", () => {
+describe("adding an item to the cart recalculates the cart total. ", () => {
   const admin = firebase.initializeAdminApp({ 
     projectId: REAL_FIREBASE_PROJECT_ID 
   }).firestore();
@@ -201,7 +200,7 @@ describe.skip("adding an item to the cart recalculates the cart total. ", () => 
     const aliceCartRef = db.doc("carts/alice")
     await aliceCartRef.set({ ownerUID: "alice", totalPrice: 0 });
 
-    //  Trigger `calculateCart` by adding items to the cart
+    //  Trigger calculateCart by adding items to the cart
     const aliceItemsRef = aliceCartRef.collection("items");
     await aliceItemsRef.doc("doc1").set({name: "nectarine", price: 2.99});
     await aliceItemsRef.doc("doc2").set({ name: "grapefruit", price: 6.99 });
@@ -218,7 +217,7 @@ describe.skip("adding an item to the cart recalculates the cart total. ", () => 
   
         // When the `itemCount`and `totalPrice` match the expectations for the
         // two items added, the promise resolves, and the test passes.
-        if (snap.exists && snap.data().itemCount === expectedCount && snap.data().totalPrice === expectedTotal) {
+        if (snap.data().itemCount === expectedCount && snap.data().totalPrice == expectedTotal) {
           // Call the function returned by `onSnapshot` to unsubscribe from updates
           unsubscribe();
           resolve();

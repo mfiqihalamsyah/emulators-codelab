@@ -7,6 +7,7 @@
     "source": "functions"
   },
   "hosting": {
+    "site": "my-app-8e31f-944c9",
     "public": "public",
     "ignore": [
       "firebase.json",
